@@ -2,7 +2,7 @@
 {
     public class PetResponse
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public Category Category { get; set; }
 

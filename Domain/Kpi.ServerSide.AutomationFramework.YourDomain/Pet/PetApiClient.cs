@@ -22,7 +22,7 @@ namespace Kpi.ServerSide.AutomationFramework.YourDomain.Pet
         }
 
         public async Task<PetResponse> GetPetByIdAsync(
-            int petId)
+            long petId)
         {
             var restResponse = await ExecuteGetAsync(
                 $"/v2/pet/{petId}");
@@ -94,6 +94,61 @@ namespace Kpi.ServerSide.AutomationFramework.YourDomain.Pet
                 MethodBase.GetCurrentMethod().DeclaringType?.FullName,
                 restResponse);
             return restResponse.GetModel<CreatePetResponse>();
+        }
+
+        public async Task<PetResponse> DeletePetByIdAsync(
+            long petId)
+        {
+            Logger.Information(
+                "Start '{@Method}' with {@petId}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                petId);
+
+            var restResponse = await ExecuteDeleteAsync(
+                $"/v2/pet/{petId}");
+
+            Logger.Information(
+                "Finished '{@Method}' with {@restResponse}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                restResponse);
+            return restResponse.GetModel<PetResponse>();
+        }
+
+        public async Task<PetResponse> PostPetAsync(
+            PetRequest petRequest)
+        {
+            Logger.Information(
+                "Start '{@Method}' with {@petRequest}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                petRequest);
+
+            var restResponse = await ExecutePostAsync($"/v2/pet", petRequest);
+
+            Logger.Information(
+                "Finished '{@Method}' with {@restResponse}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                restResponse);
+            return restResponse.GetModel<PetResponse>();
+        }
+
+        public async Task<PetResponse> PutPetAsync(
+            PetRequest petRequest)
+        {
+            Logger.Information(
+                "Start '{@Method}' with {@petRequest}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                petRequest);
+
+            var restResponse = await ExecutePutAsync(
+                $"/v2/pet",
+                petRequest,
+                null);
+
+            Logger.Information(
+                "Finished '{@Method}' with {@restResponse}",
+                MethodBase.GetCurrentMethod().DeclaringType?.FullName,
+                restResponse);
+            return restResponse.GetModel<PetResponse>();
         }
     }
 }

@@ -5,9 +5,9 @@ Feature: Get Pet by Id
 	Story:
 
 @Smoke
-Scenario: 1. Validate Get Pet by id with valid data
+Scenario: 1. Get Pet by valid id
 	Given I have free API with swagger
-	When I receive get pet by id response
+	When I receive pet by valid posted id
 	Then I see returned pet details
 
 Scenario Outline: 2. Validate Get Pet by id with invalid data
