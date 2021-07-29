@@ -6,14 +6,14 @@ using TechTalk.SpecFlow;
 
 namespace Kpi.ServerSide.AutomationFramework.Tests.Features
 {
-    [Binding, Scope(Feature = "Post Pet")]
-    public class PostDefinition
+    [Binding, Scope(Feature = "Put Pet")]
+    public class PutDefinition
     {
         private readonly IPetContext _petContext;
-        private PetResponse _createdPetResponse;
+        private PetResponse _putPet;
         private PetResponse _petResponse;
 
-        public PostDefinition(
+        public PutDefinition(
             IPetContext petContext)
         {
             _petContext = petContext;
@@ -24,24 +24,24 @@ namespace Kpi.ServerSide.AutomationFramework.Tests.Features
         {
         }
 
-        [When(@"I send pet creation request")]
-        public async Task GivenISendPetCreationRequest()
+        [When(@"I send put request")]
+        public async Task GivenISendPutRequest()
         {
-            _createdPetResponse = await _petContext.PostPetAsync(PetRequestStorage.PetRequest["PetRequest"]);
+            _putPet = await _petContext.PutPetAsync(PetRequestStorage.PetRequest["PetRequest"]);
         }
 
         [Then(@"I send get request")]
 
         public async Task GivenISendGetRequest()
         {
-            _petResponse = await _petContext.GetPetByIdAsync(_createdPetResponse.Id);   
+            _petResponse = await _petContext.GetPetByIdAsync(_putPet.Id);
         }
 
-        [Then(@"I see created pet")]
+        [Then(@"I see Pet details")]
 
-        public void GivenISeeCreatedPet()
+        public void GivenISeePetDetails()
         {
-            _petResponse.Id.Should().Be(_createdPetResponse.Id);
+            _petResponse.Should().BeEquivalentTo(_putPet);
         }
     }
 }

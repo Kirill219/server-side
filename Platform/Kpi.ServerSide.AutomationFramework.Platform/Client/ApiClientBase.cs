@@ -88,6 +88,13 @@ namespace Kpi.ServerSide.AutomationFramework.Platform.Client
             return response;
         }
 
+        protected async Task<IRestResponse> ExecuteDeleteAsync(string uri, string accessToken = null)
+        {
+            var request = new RestRequest(uri, Method.DELETE)
+                .AddAuthorizationHeader(accessToken);
+            return await _client.ExecuteAsync(request);
+        }
+
         protected virtual IRestRequest CreateRequest<T>(string uri, Method method, T body, string accessToken = null)
         {
             var restRequest = new RestRequest(uri, method);

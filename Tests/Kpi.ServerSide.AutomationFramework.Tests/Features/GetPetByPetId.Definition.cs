@@ -13,6 +13,7 @@ namespace Kpi.ServerSide.AutomationFramework.Tests.Features
         private readonly IPetContext _petContext;
         private PetResponse _petResponse;
         private ResponseMessage _responseMessage;
+        private PetResponse _createdPetResponse;
 
         public GetPetDefinition(
             IPetContext petContext)
@@ -25,10 +26,11 @@ namespace Kpi.ServerSide.AutomationFramework.Tests.Features
         {
         }
 
-        [When(@"I receive get pet by id response")]
+        [When(@"I receive pet by valid posted id")]
         public async Task GivenIReceiveGetPetByIdResponse()
         {
-            _petResponse = await _petContext.GetPetByIdAsync(1);
+            _createdPetResponse = await _petContext.PostPetAsync(PetRequestStorage.PetRequest["PetRequest"]);
+            _petResponse = await _petContext.GetPetByIdAsync(_createdPetResponse.Id);
         }
 
         [When(@"I receive get pet by id response with (.*) wrong id")]
@@ -52,8 +54,7 @@ namespace Kpi.ServerSide.AutomationFramework.Tests.Features
         [Then(@"I see returned pet details")]
         public void ThenISeeReturnedPetDetails()
         {
-            var expectedResponse = PetResponsesStorage.PetResponses["Default"];
-            _petResponse.Should().BeEquivalentTo(expectedResponse);
+            _petResponse.Should().BeEquivalentTo(_createdPetResponse);
         }
     }
 }
