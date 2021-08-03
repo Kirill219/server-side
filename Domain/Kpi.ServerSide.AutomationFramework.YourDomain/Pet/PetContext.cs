@@ -18,13 +18,13 @@ namespace Kpi.ServerSide.AutomationFramework.YourDomain.Pet
         public async Task<PetResponse> GetPetByIdAsync(
             long petId)
         {
-            Thread.Sleep(1000);
             return await _petApiClient.GetPetByIdAsync(petId);
         }
 
         public async Task<ResponseMessage> GetPetByIdResponseAsync(
             string petId)
         {
+            Thread.Sleep(1000);
             return await _petApiClient.GetPetByIdResponseAsync(petId);
         }
 

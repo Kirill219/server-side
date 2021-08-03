@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Kpi.ServerSide.AutomationFramework.Model.Domain.Pet;
 using Kpi.ServerSide.AutomationFramework.TestsData.Storages.Pet;
@@ -48,6 +49,7 @@ namespace Kpi.ServerSide.AutomationFramework.Tests.Features
         [Then(@"I see null in response")]
         public void GivenISeeNullInResponse()
         {
+            Thread.Sleep(3000);
             _petDeleteResponse.Should().Be(null);
         }
     }
