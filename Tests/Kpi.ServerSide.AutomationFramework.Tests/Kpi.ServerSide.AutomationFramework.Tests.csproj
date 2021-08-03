@@ -24,6 +24,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\User.Delete.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\User.Get.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\User.Post.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\User.Put.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\..\StyleCop\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
 
@@ -81,5 +88,19 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Features\GetUser.Definition.cs">
+      <DependentUpon>User.Get.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\PostUser.Definition.cs">
+      <DependentUpon>User.Post.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\PutUser.Definition.cs">
+      <DependentUpon>User.Put.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\DeleteUser.Definition.cs">
+      <DependentUpon>User.Delete.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 </Project>

@@ -4,12 +4,17 @@ namespace Kpi.ServerSide.AutomationFramework.Model.Domain.User
 {
     public interface IUserContext
     {
-        Task<UserResponse> GetPetByIdAsync(int userId);
+        Task<UserResponse> CreateUserAsync(
+            UserRequest userRequest);
 
-        Task<ResponseMessage> GetPetByIdResponseAsync(string userId);
+        Task<UserProfileResponse> GetUserByTokenAsync(
+            string accessToken);
 
-        Task<ResponseMessage> CreatePetResponseAsync(UserRequest userRequest);
+        Task<ResponseMessage> UpdateUserResponseAsync(
+            UserUpdateRequest userUpdateRequest,
+            string accessToken);
 
-        Task<CreateUserResponse> CreatePetAsync(UserRequest userRequest);
+        Task<ResponseMessage> DeleteUserResponseAsync(
+            string accessToken);
     }
 }

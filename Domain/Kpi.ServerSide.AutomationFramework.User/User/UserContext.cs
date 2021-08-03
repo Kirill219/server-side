@@ -14,28 +14,34 @@ namespace Kpi.ServerSide.AutomationFramework.User.User
             _userApiClient = userApiClient;
         }
 
-        public async Task<UserResponse> GetPetByIdAsync(
-            int userId)
-        {
-            return await _userApiClient.GetPetByIdAsync(userId);
-        }
-
-        public async Task<ResponseMessage> GetPetByIdResponseAsync(
-            string userId)
-        {
-            return await _userApiClient.GetPetByIdResponseAsync(userId);
-        }
-
-        public async Task<ResponseMessage> CreatePetResponseAsync(
+        public async Task<UserResponse> CreateUserAsync(
             UserRequest userRequest)
         {
-            return await _userApiClient.CreatePetResponseAsync(userRequest);
+            return await _userApiClient.CreateUserAsync(
+                userRequest);
         }
-        
-        public async Task<CreateUserResponse> CreatePetAsync(
-            UserRequest userRequest)
+
+        public async Task<UserProfileResponse> GetUserByTokenAsync(
+            string accessToken)
         {
-            return await _userApiClient.CreatePetAsync(userRequest);
+            return await _userApiClient.GetUserByTokenAsync(
+                Token.BearerTokenGenerator(accessToken));
+        }
+
+        public async Task<ResponseMessage> UpdateUserResponseAsync(
+            UserUpdateRequest userUpdateRequest, 
+            string accessToken)
+        {
+            return await _userApiClient.UpdateUserResponseAsync(
+                userUpdateRequest, 
+                Token.BearerTokenGenerator(accessToken));
+        }
+
+        public async Task<ResponseMessage> DeleteUserResponseAsync(
+            string accessToken)
+        {
+            return await _userApiClient.DeleteUserResponseAsync(
+                Token.BearerTokenGenerator(accessToken));
         }
     }
 }
