@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace Kpi.ServerSide.AutomationFramework.Tests.Features
 {
-    [Binding, Scope(Feature = "Get Pet by Id")]
+    [Binding, Scope(Feature = "Get User by Id")]
     public class GetPetDefinition
     {
         private readonly IUserContext _petContext;

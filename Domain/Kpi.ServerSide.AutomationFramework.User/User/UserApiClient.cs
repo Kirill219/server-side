@@ -22,24 +22,24 @@ namespace Kpi.ServerSide.AutomationFramework.User.User
         }
 
         public async Task<UserResponse> GetPetByIdAsync(
-            int petId)
+            int userId)
         {
             var restResponse = await ExecuteGetAsync(
-                $"/v2/pet/{petId}");
+                $"/v2/pet/{userId}");
 
             return restResponse.GetModel<UserResponse>();
         }
 
         public async Task<ResponseMessage> GetPetByIdResponseAsync(
-            string petId)
+            string userId)
         {
             Logger.Information(
                 "Start '{@Method}' with {@petId}",
                 MethodBase.GetCurrentMethod().DeclaringType?.FullName,
-                petId);
+                userId);
 
             var restResponse = await ExecuteGetAsync(
-                $"/v2/pet/{petId}");
+                $"/v2/pet/{userId}");
 
             Logger.Information(
                 "Finished '{@Method}' with {@restResponse}",

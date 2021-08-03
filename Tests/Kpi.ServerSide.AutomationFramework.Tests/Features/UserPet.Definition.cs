@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace Kpi.ServerSide.AutomationFramework.Tests.Features
 {
-    [Binding, Scope(Feature = "Post pet")]
+    [Binding, Scope(Feature = "Post User")]
     public class PostPetDefinition
     {
         private readonly IUserContext _petContext;

@@ -81,14 +81,5 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Features\GetPetByPetId.Definition.cs">
-      <DependentUpon>User.Get.feature</DependentUpon>
-    </Compile>
-    <Compile Update="Features\PostPet.Definition.cs">
-      <DependentUpon>User.Post.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
 
 </Project>
