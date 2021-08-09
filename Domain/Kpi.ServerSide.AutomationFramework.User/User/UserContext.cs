@@ -6,36 +6,42 @@ namespace Kpi.ServerSide.AutomationFramework.User.User
 {
     public class UserContext : IUserContext
     {
-        private readonly IUserApiClient _petApiClient;
+        private readonly IUserApiClient _userApiClient;
 
         public UserContext(
-            IUserApiClient petApiClient)
+            IUserApiClient userApiClient)
         {
-            _petApiClient = petApiClient;
+            _userApiClient = userApiClient;
         }
 
-        public async Task<UserResponse> GetPetByIdAsync(
-            int petId)
+        public async Task<UserResponse> CreateUserAsync(
+            UserRequest userRequest)
         {
-            return await _petApiClient.GetPetByIdAsync(petId);
+            return await _userApiClient.CreateUserAsync(
+                userRequest);
         }
 
-        public async Task<ResponseMessage> GetPetByIdResponseAsync(
-            string petId)
+        public async Task<UserProfileResponse> GetUserByTokenAsync(
+            string accessToken)
         {
-            return await _petApiClient.GetPetByIdResponseAsync(petId);
+            return await _userApiClient.GetUserByTokenAsync(
+                Token.BearerTokenGenerator(accessToken));
         }
 
-        public async Task<ResponseMessage> CreatePetResponseAsync(
-            UserRequest petRequest)
+        public async Task<ResponseMessage> UpdateUserResponseAsync(
+            UserUpdateRequest userUpdateRequest, 
+            string accessToken)
         {
-            return await _petApiClient.CreatePetResponseAsync(petRequest);
+            return await _userApiClient.UpdateUserResponseAsync(
+                userUpdateRequest, 
+                Token.BearerTokenGenerator(accessToken));
         }
-        
-        public async Task<CreateUserResponse> CreatePetAsync(
-            UserRequest petRequest)
+
+        public async Task<ResponseMessage> DeleteUserResponseAsync(
+            string accessToken)
         {
-            return await _petApiClient.CreatePetAsync(petRequest);
+            return await _userApiClient.DeleteUserResponseAsync(
+                Token.BearerTokenGenerator(accessToken));
         }
     }
 }

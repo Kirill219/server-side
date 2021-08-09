@@ -42,7 +42,7 @@ namespace Kpi.ServerSide.AutomationFramework.Bootstrap
             Builder.RegisterType<UserApiClient>().As<IUserApiClient>().SingleInstance();
 
             // Logic
-            Builder.RegisterType<UserContext>().As<IUserContext>().SingleInstance();
+            Builder.RegisterType<UserContext>().As<IUserContext>().InstancePerDependency();
         }
     }
 }

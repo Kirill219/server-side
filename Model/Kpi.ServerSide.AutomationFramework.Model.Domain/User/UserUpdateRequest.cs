@@ -1,7 +1,7 @@
 ﻿namespace Kpi.ServerSide.AutomationFramework.Model.Domain.User
 {
-    public class Category
+    public class UserUpdateRequest
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
